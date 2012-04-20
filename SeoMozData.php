@@ -30,7 +30,7 @@ class SeoMozData
             }
 
             if (isset($result->ueid)) {
-                $this->setHttpStatusCode($result->ueid);
+                $this->setExternalLinks($result->ueid);
             }
         }
     }

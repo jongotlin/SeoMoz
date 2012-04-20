@@ -15,5 +15,5 @@ Usage
     $secretKey = 'yyy';
     
     $seoMoz = new SeoMoz($accessId, $secretKey);
-    $seoMozData = $seoMoz->getSeoMozData('www.github.com);
+    $seoMozData = $seoMoz->getSeoMozData('www.github.com');
     echo $seoMozData->getDomainAuthority();
