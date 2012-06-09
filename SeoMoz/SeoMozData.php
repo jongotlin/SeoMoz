@@ -10,29 +10,24 @@ class SeoMozData
     private $httpStatusCode;
     private $externalLinks;
     
-    public function __construct($buffer)
+    public function __construct(\stdClass $result)
     {
-        if (empty($buffer)) {
-            // TODO: 
-        } else {
-            $result = json_decode($buffer);
-
-            if (isset($result->upa)) {
-                $this->setPageAuthority($result->upa);
-            }
-
-            if (isset($result->pda)) {
-                $this->setDomainAuthority($result->pda);
-            }
-            
-            if (isset($result->us)) {
-                $this->setHttpStatusCode($result->us);
-            }
-
-            if (isset($result->ueid)) {
-                $this->setExternalLinks($result->ueid);
-            }
+        if (isset($result->upa)) {
+            $this->setPageAuthority($result->upa);
         }
+
+        if (isset($result->pda)) {
+            $this->setDomainAuthority($result->pda);
+        }
+        
+        if (isset($result->us)) {
+            $this->setHttpStatusCode($result->us);
+        }
+
+        if (isset($result->ueid)) {
+            $this->setExternalLinks($result->ueid);
+        }
+        
     }
     
     public function setPageAuthority($pageAuthority)

@@ -46,7 +46,21 @@ class SeoMoz
     
     public function getSeoMozData($domain_name)
     {
-        return new SeoMozData($this->fetchData($domain_name));
+        $buffer = $this->fetchData($domain_name);
+        if (empty($buffer)) {
+            throw new SeoMozException('Empty result'); 
+        } else {
+            $result = json_decode($buffer);
+            if (isset($result->status)) {
+                if ("200" != $result->status) {
+                    throw new SeoMozException($result->error_message);
+                }
+            }
+        }
+
+        return new SeoMozData($result);
     }
 
 }
+
+class SeoMozException extends \Exception {}
