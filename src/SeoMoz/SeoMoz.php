@@ -32,8 +32,9 @@ class SeoMoz
 
         $binarySignature = hash_hmac('sha1', $stringToSign, $this->secretKey, true);
         $urlSafeSignature = urlencode(base64_encode($binarySignature));
+        $cols = 34359738368 + 68719476736 + 536870912 + 32;
 
-        return "http://lsapi.seomoz.com/linkscape/url-metrics/".urlencode($domainName)."?AccessID=".$this->accessId."&Expires=".$expires."&Signature=".$urlSafeSignature;
+        return "http://lsapi.seomoz.com/linkscape/url-metrics/".urlencode($domainName)."?Cols=".$cols."&AccessID=".$this->accessId."&Expires=".$expires."&Signature=".$urlSafeSignature;
     }
     
     /**
