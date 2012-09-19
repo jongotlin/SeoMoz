@@ -42,8 +42,7 @@ class SeoMoz
      */
     public function getSeoMozData($result)
     {
-        error_log($result);
-        if (empty($result)) {
+        if (empty($result) || '{}' == $result) {
             throw new InvalidSeoMozFormatException('Empty result'); 
         } else {
             $json = json_decode($result);
