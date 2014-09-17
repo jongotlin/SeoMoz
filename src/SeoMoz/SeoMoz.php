@@ -23,11 +23,15 @@ class SeoMoz
 
     /**
      * @param string $domainName Domain name to get SeoMoz data for
+     * @param mixed $expires The expiration time of the SeoMoz auth (defaults to +5m)
      * @return string SeoMoz-url
      */
-    public function getSeoMozUrl($domainName)
+    public function getSeoMozUrl($domainName, $expires=null)
     {
-        $expires = time() + 300;
+        if(is_null($expires)) {
+            $expires = time() + 300;
+        }
+        
         $stringToSign = $this->accessId."\n".$expires;
 
         $binarySignature = hash_hmac('sha1', $stringToSign, $this->secretKey, true);
